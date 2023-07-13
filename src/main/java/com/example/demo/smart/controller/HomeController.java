@@ -84,10 +84,15 @@ public class HomeController {
 
 		}
 	}
-
-	@RequestMapping("/login")
+	@RequestMapping("/signin")
 	public String login(ModelMap model) {
-		model.addAttribute("title", "Register - Smart Contact Manager.");
+		model.addAttribute("title", "Login - Smart Contact Manager.");
 		return "login";
+	}
+
+	@RequestMapping("/login-fail")
+	public String error(ModelMap model){
+		model.addAttribute("title", "Error - Smart Contact Manager");
+		return "error";
 	}
 }

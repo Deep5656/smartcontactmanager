@@ -5,10 +5,39 @@
 	<meta charset="UTF-8" />
 	<title>Login Page</title>
 </head>
+
 <body>
-	<section>
-		<h1>This is Login Page</h1>
-		<p>We are going to write here about page of smart contact manager.</p>
+	<section class="vh-100" style="background-color: #0ba1ae;">
+		<div class="container py-5 h-100">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-12 col-md-8 col-lg-6 col-xl-5">
+					<div class="card shadow-2-strong" style="border-radius: 1rem;">
+
+						<form action="" th:action="@{/dologin}" method="post">
+							<div class="card-body p-5 text-center">
+								<h3 class="mb-5">Login</h3>
+								<div th:if="${param.error}" class="alert alert-danger">
+									Invalid username & password
+								</div>
+								<div th:if="${param.logout}" class="alert alert-success">
+									Successfully logout !!
+								</div>
+								<div class="form-outline mb-4">
+									<input type="email" name="username" id="typeEmailX-2"
+										class="form-control form-control-lg" placeholder="Email" />
+								</div>
+								<div class="form-outline mb-4">
+									<input type="password" name="password" id="typePasswordX-2"
+										class="form-control form-control-lg" placeholder="Password" />
+								</div>
+								<button class="btn bg-primary btn-lg btn-block" type="submit">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</section>
 </body>
+
 </html>

@@ -46,6 +46,10 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/**").permitAll()
                 .and().formLogin()
+                .loginPage("/signin")//this is for your custom login page
+                .loginProcessingUrl("/dologin")//on which url username and password will be submitted
+                .defaultSuccessUrl("/user/index")//after successful submition
+                .failureUrl("/login-fail")//after failure
                 .and().csrf().disable();
     }
 
