@@ -1,6 +1,11 @@
 package com.example.demo.smart.controller;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -13,11 +18,13 @@ import com.example.demo.smart.dao.UserRepository;
 import com.example.demo.smart.entities.User;
 import com.example.demo.smart.helper.Message;
 
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
+
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -59,6 +66,8 @@ public class HomeController {
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setImageurl("default.png");
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			
 			System.out.println("agreement " + agreement);
 			System.out.println("USER" + user);
 			User result = this.userRepository.save(user);
