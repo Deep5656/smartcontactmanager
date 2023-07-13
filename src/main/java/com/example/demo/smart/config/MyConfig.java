@@ -1,5 +1,6 @@
 package com.example.demo.smart.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -14,10 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class MyConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public UserDetailsService getUserDetailService() {
-        return new UserDetailsServiceImpl();
-    }
+    // @Bean
+    // public UserDetailsService getUserDetailService() {
+    //     return new UserDetailsServiceImpl();
+    // }
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Bean
     public BCryptPasswordEncoder PasswordEncoder() {
@@ -26,18 +29,23 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 
     // because we are using databaseauthentication not inmemoryauthentication
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setUserDetailsService(this.getUserDetailService());
-        daoAuthenticationProvider.setPasswordEncoder(this.PasswordEncoder());
-        return daoAuthenticationProvider;
-    }
+    // @Bean
+    // public DaoAuthenticationProvider authenticationProvider() {
+    //     DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+    //     daoAuthenticationProvider.setUserDetailsService(this.getUserDetailService());
+    //     daoAuthenticationProvider.setPasswordEncoder(this.PasswordEncoder());
+    //     return daoAuthenticationProvider;
+    // }
 
+    // @Override
+    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth.authenticationProvider(authenticationProvider());
+    // }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.userDetailsService(this.userDetailsServiceImpl).passwordEncoder(PasswordEncoder());
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
