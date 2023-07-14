@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.smart.dao.UserRepository;
 import com.example.demo.smart.entities.User;
 import com.example.demo.smart.helper.Message;
-
 
 
 @Controller
