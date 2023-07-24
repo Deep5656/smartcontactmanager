@@ -72,26 +72,25 @@ public class UserController {
     // processing add-contact form
     @PostMapping("/process-contact")
     public String processContact(@ModelAttribute Contact contact, @RequestParam("profileImage") MultipartFile file,
-            Principal principal,HttpSession session) {
+            Principal principal, HttpSession session) {
         try {
             String name = principal.getName();
             User user = this.userRepository.getUserByUserName(name);
 
-
             // if(3>2){
-            //     throw new Exception();
+            // throw new Exception();
             // }
 
             // processing and uploading file...
-            if(file.isEmpty()){
-                //if file is empty then try our message
+            if (file.isEmpty()) {
+                // if file is empty then try our message
                 System.out.println("File is empty");
                 contact.setImage("contact.png");
-            }else{
-                //update the file to the folder and name to the contact
+            } else {
+                // update the file to the folder and name to the contact
                 contact.setImage(file.getOriginalFilename());
                 File saveFile = new ClassPathResource("/static/image").getFile();
-                Path path = Paths.get(saveFile.getAbsolutePath()+File.separator+file.getOriginalFilename());
+                Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
                 System.out.println("Image is uploaded");
             }
@@ -106,13 +105,11 @@ public class UserController {
             // message success...
             session.setAttribute("message", new Message("Your contact is added successfully", "success"));
 
-
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
             e.printStackTrace();
             // message alert...
             session.setAttribute("message", new Message("Something went wrong !!, try again", "danger"));
-
 
         }
         return "normal/add_contact_form";
@@ -120,17 +117,17 @@ public class UserController {
 
     // show contacts handler...
     @GetMapping("/show-contact/{page}")
-    public String showContacts(@PathVariable("page") Integer page ,ModelMap m,Principal principal){
+    public String showContacts(@PathVariable("page") Integer page, ModelMap m, Principal principal) {
         m.addAttribute("title", "Show Contact Page");
         // contact ki list ko bhejna hai...
         String userName = principal.getName();
         User user = this.userRepository.getUserByUserName(userName);
         // current page-page
         // contact per page - 5
-        PageRequest pageable = PageRequest.of(page,10);
-        Page<Contact> contacts = this.contactRepository.findContactByUser(user.getId(),pageable);
+        PageRequest pageable = PageRequest.of(page, 10);
+        Page<Contact> contacts = this.contactRepository.findContactByUser(user.getId(), pageable);
 
-        m.addAttribute("contacts",contacts);
+        m.addAttribute("contacts", contacts);
         m.addAttribute("currentPage", page);
         m.addAttribute("totalPages", contacts.getTotalPages());
         return "normal/show_contacts";
@@ -139,12 +136,19 @@ public class UserController {
     // showing particular contact details..
 
     @RequestMapping("/{cId}/contact")
-    public String showContactDetails(@PathVariable("cId") Integer cId,ModelMap m){
-        System.out.println("cId"+cId);
+    public String showContactDetails(@PathVariable("cId") Integer cId, ModelMap m, Principal principal) {
+        System.out.println("cId" + cId);
         Optional<Contact> contactOptional = this.contactRepository.findById(cId);
         Contact contact = contactOptional.get();
-        m.addAttribute("contact", contact);
-        m.addAttribute("title","Contact-Details");
+        m.addAttribute("title", "Contact-Details");
+        // security check bug fix..
+        String userName = principal.getName();
+        User user = this.userRepository.getUserByUserName(userName);
+
+        if (user.getId() == contact.getUser().getId())
+            m.addAttribute("contact", contact);
+
         return "normal/contact_details";
     }
+
 }

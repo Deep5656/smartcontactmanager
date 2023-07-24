@@ -9,48 +9,55 @@
 <body>
 	<section>
 		<!-- <h1>This is particular contact details page...</h1> -->
-		<div class="card">
-			<div class="card-details">
-				<div class="container text-center">
-					<img src="" style="height:200px;width:200px;" class="my_profile_picture"
-						th:src="@{'/image/'+${contact.image}}" alt="profile-photo">
-					<h3><span th:text="${contact.name}"></span>( <span th:text="${contact.secondName}"></span> )</h3>
+		<div th:if="${contact}">
+			<div class="card">
+				<div class="card-body">
+					<div class="container text-center">
+						<img src="" style="height:200px;width:200px;" class="my_profile_picture"
+							th:src="@{'/image/'+${contact.image}}" alt="profile-photo">
+						<h3><span th:text="${contact.name}"></span>( <span th:text="${contact.secondName}"></span> )</h3>
+					</div>
 				</div>
+				<table class="table mr-2">
+					<thead>
+						<tr>
+							<th>#ID</th>
+							<th>SCM2022<span th:text="${contact.cId}"></span></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Email</th>
+							<td th:text="${contact.email}"></td>
+						</tr>
+						<tr>
+							<th>Phone</th>
+							<td th:text="${contact.phone}"></td>
+						</tr>
+						<tr>
+							<th>Work</th>
+							<td th:text="${contact.work}"></td>
+						</tr>
+						<tr>
+							<th>Discription</th>
+							<td th:utext="${contact.description}"></td>
+						</tr>
+		
+					</tbody>
+					
+				</table>
+				<div class="container text-center">
+					<button class="btn btn-danger btn-sm mb-3">Delete</button>
+					<button class="btn btn-primary btn-sm mb-3">Update</button>
+				</div>
+				<h1 th:unless="${contact}">You Dont have permission to visit this contact !!</h1>
 			</div>
+	
 		</div>
-
-		<table class="table mr-2">
-			<thead>
-				<tr>
-					<th>#ID</th>
-					<th>SCM2022<span th:text="${contact.cId}"></span></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th>Email</th>
-					<td th:text="${contact.email}"></td>
-				</tr>
-				<tr>
-					<th>Phone</th>
-					<td th:text="${contact.phone}"></td>
-				</tr>
-				<tr>
-					<th>Work</th>
-					<td th:text="${contact.work}"></td>
-				</tr>
-				<tr>
-					<th>Discription</th>
-					<td th:utext="${contact.description}"></td>
-				</tr>
-
-			</tbody>
-			
-		</table>
-		<div class="container text-center">
-			<button class="btn btn-danger btn-sm mb-3">Delete</button>
-			<button class="btn btn-primary btn-sm mb-3">Update</button>
-		</div>
+		
+		
+		
+		
 		
 	</section>
 </body>
