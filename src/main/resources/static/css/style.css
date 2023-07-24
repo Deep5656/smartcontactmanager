@@ -156,6 +156,21 @@ p {
 }
 
 
-.card{
+.card {
 	width: 98%;
+}
+
+/* for profile picture in show contact form */
+.my_profile_picture {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	object-fit: cover;
+	/* border: 1px solid black; */
+}
+
+
+.table {
+	width: 98%;
+	border-radius: 2px;
 }
