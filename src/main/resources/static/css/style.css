@@ -1,63 +1,68 @@
-body{
-	background-color: #e2e2e2!important;
+body {
+	background-color: #e2e2e2 !important;
 }
- 
-.bg-primary{
+
+.bg-primary {
 	background: #009688 !important;
 }
 
-.banner{
+.banner {
 	width: 100%;
 	height: 90vh;
-	background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url(../image/krishna.jpg);
+	background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/krishna.jpg);
 	background-size: cover;
 	color: white;
 }
 
-.my-card{
+.my-card {
 	padding: 20px;
 	margin: 20px;
-	background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url(../image/krishna.jpg);
+	background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/krishna.jpg);
 	background-size: cover;
-	color:white;
+	color: white;
 }
-.card1{
+
+.card1 {
 	padding: 20px;
 	margin: 20px;
-	background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url(../image/krishna.jpg);
+	background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)), url(../image/krishna.jpg);
 	background-size: cover;
-	color:white;
-	height:80%;
-}
-.back{
-	background:transparent;
-	color:white;
-	
-}
-::-ms-input-placeholder { /* Microsoft Edge */
-   color:    #909;
-}
-.back:focus{
-	background:transparent;
-	color:yellow;
+	color: white;
+	height: 80%;
 }
 
-.fix{
-	position:sticky;
-	top:0px;
-	z-index:10;
+.back {
+	background: transparent;
+	color: white;
+
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #909;
+}
+
+.back:focus {
+	background: transparent;
+	color: yellow;
+}
+
+.fix {
+	position: sticky;
+	top: 0px;
+	z-index: 10;
 }
 
 
 
-.errortxt{
+.errortxt {
 	font-size: 300px;
 }
 
 /* about page */
 
-#aboutbox{
-	color:black;
+#aboutbox {
+	color: black;
 	background: #0ba1ae;
 	height: 230px;
 	width: 100%;
@@ -66,61 +71,91 @@ body{
 	justify-content: center;
 	color: white;
 }
-#aboutbox h1{
+
+#aboutbox h1 {
 	font-size: 50px;
 }
-.aboutbox{
-	
+
+.aboutbox {
+
 	width: 80%;
-	background-color:#009688;
+	background-color: #009688;
 	position: absolute;
 	top: 200px;
 	left: 10%;
 	border-radius: 10px;
-	color:#0ba1ae;
+	color: #0ba1ae;
 }
-.aboutbox h2,p{
+
+.aboutbox h2,
+p {
 	margin: 20px;
 
 }
-.btn{
-	color: white;
+
+/* .btn {
+	color: black;
 	border: 2px solid white;
 	border-radius: 10px;
 	margin-bottom: 10px;
-}
-.btn:active{
+} */
+
+.btn:active {
 	border: 2px solid black;
 }
 
+/* for crossbtn */
+.sidebar .crossBtn {
+	position: absolute;
+	top: 0px;
+	right: 35px;
+	font-size: 36px;
+	cursor: pointer;
+	display: block;
+}
+
 /* sidebar css */
-@media  screen and (max-width:600px) {
-	.sidebar{
+@media only screen and (max-width:600px) {
+	.sidebar {
 		display: none;
-		
+		width: 80% !important;
+		background: white;
+		height: 100vh;
+		position: fixed;
+		padding-top: 20px;
+
 	}
-	.content{
-		
+
+	.content {
+		margin-left: 0% !important;
 	}
 }
 
-.sidebar{
+.sidebar {
 	width: 18%;
 	background: white;
 	height: 100%;
 	position: fixed;
-	padding-top: 10px;
+	padding-top: 40px;
 }
-.sidebar a{
+
+.sidebar a {
 	display: block;
 	color: gray;
 	padding: 10px 25px;
 	text-decoration: none;
 }
-.sidebar a:hover{
+
+.sidebar a:hover {
 	background: gray;
 	color: white;
 }
-.content{
-    margin-left: 20%;
+
+.content {
+	margin-left: 20%;
+}
+
+
+.card{
+	width: 98%;
 }
